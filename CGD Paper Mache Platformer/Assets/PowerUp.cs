@@ -12,9 +12,13 @@ public class PowerUp : MonoBehaviour
     public bool doubleJ = false;
     public float Timer = 15;
 
+    Movement movement;
+
 
     void Start()
     {
+        movement = GameObject.FindObjectOfType<Movement>();
+
         tempPos = transform.position;
         tempVal = transform.position.y;
     }
@@ -47,6 +51,9 @@ public class PowerUp : MonoBehaviour
 
         if (doubleJ)
         {
+
+            movement.numJumps = 2;
+
             //states.doubleJump = true;
             //PS.enableEmission = false;
             //states.doublePS.enableEmission = true;
@@ -58,6 +65,9 @@ public class PowerUp : MonoBehaviour
 
         if (doubleJ)
         {
+
+            movement.numJumps = 1;
+
             //states.doublePS.enableEmission = false;
             //states.doubleJump = false;
             //PS.enableEmission = true;
