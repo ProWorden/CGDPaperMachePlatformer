@@ -6,7 +6,14 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public GameObject player;
+    public float aggroRange = 20;
+    public float shootingRange = 10;
+    public float range = 0;
+    public float rotationSpeed = 5;
+    public Transform[] patrol;
+    public int patrolPoint = 0;
     private NavMeshAgent nma;
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +24,52 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nma.SetDestination(player.transform.position);
+        Aggro();
+    }
+
+    void Aggro()
+    {
+        range = Vector3.Distance(player.transform.position, transform.position);
+        if (range < shootingRange)
+        {
+            nma.SetDestination(transform.position);
+            FaceTarget();
+        }
+        else if (range < aggroRange)
+        {
+            nma.SetDestination(player.transform.position);
+            
+        }
+        else
+        {
+            if (nma.remainingDistance <= 0.1f && !nma.pathPending)
+            {
+                Patrolling();
+            }
+        }
+    }
+
+    void FaceTarget()
+    {
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    void Shoot()
+    {
+
+    }
+
+    void Patrolling()
+    {
+        if(patrol.Length == 0)
+        {
+            nma.SetDestination(transform.position);
+            return;
+        }
+        nma.destination = patrol[patrolPoint].position;
+        patrolPoint = (patrolPoint + 1) % patrol.Length;
     }
 }
+
