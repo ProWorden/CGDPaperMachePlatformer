@@ -66,13 +66,37 @@ MonoBehaviour:
   - {fileID: 6722802729364387333}
   - {fileID: -983185618293445593}
   - {fileID: 1103358111370392757}
+  - {fileID: 585861525713430272}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5462892870212859448}
   StringsBanks:
   - {fileID: 8643989621807574248}
-  stringsBankWriteTime: 637428669948179995
+  stringsBankWriteTime: 637428745021357266
   cacheVersion: 5
+--- !u!114 &585861525713430272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Background song
+  m_EditorClassIdentifier: 
+  Path: event:/Background song
+  guid: 83db6761d338cb479fac57751fdd3c63
+  Banks:
+  - {fileID: 5462892870212859448}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 120000
 --- !u!114 &1103358111370392757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: ../../FMOD Studio/PaperMachePlatformer/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637428669948160050
+  lastModified: 637428745021327347
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -151,9 +175,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: ../../FMOD Studio/PaperMachePlatformer/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637428669948179995
+  lastModified: 637428745021357266
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 882
+    Value: 928
   Exists: 1
