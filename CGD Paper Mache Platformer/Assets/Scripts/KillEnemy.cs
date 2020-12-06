@@ -6,12 +6,12 @@ using UnityEngine;
 public class KillEnemy : MonoBehaviour
 {
     public CharacterController cc;
-    public float enemyHeight = 1;
+    private float enemyHeight = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemyHeight = transform.position.y;
     }
 
     // Update is called once per frame
