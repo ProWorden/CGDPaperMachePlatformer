@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectible : MonoBehaviour
+public class meshhider : MonoBehaviour
 {
-
-    private GameHandler GH;
-
     // Start is called before the first frame update
     void Start()
     {
-        GH = GameObject.Find("Canvas").GetComponent<GameHandler>();
-
+        
     }
 
     // Update is called once per frame
@@ -22,7 +18,7 @@ public class Collectible : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GH.collectable++;
-        Destroy(gameObject);
+        GetComponent<MeshRenderer>().enabled = false;
+        Debug.Log("egged");
     }
 }
