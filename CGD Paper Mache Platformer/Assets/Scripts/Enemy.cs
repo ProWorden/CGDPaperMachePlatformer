@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     public float rotationSpeed = 5;
     public Transform[] patrol;
     public int patrolPoint = 0;
+    public Collider splashCollider;
+    public ParticleSystem splashParticles;
     private NavMeshAgent nma;
  
 
@@ -34,6 +36,7 @@ public class Enemy : MonoBehaviour
         {
             nma.SetDestination(transform.position);
             FaceTarget();
+            Shoot();
         }
         else if (range < aggroRange)
         {
@@ -47,6 +50,11 @@ public class Enemy : MonoBehaviour
                 Patrolling();
             }
         }
+        if (range >= shootingRange)
+        {
+            splashCollider.enabled = false;
+            splashParticles.Stop();
+        }
     }
 
     void FaceTarget()
@@ -58,7 +66,8 @@ public class Enemy : MonoBehaviour
 
     void Shoot()
     {
-
+        splashCollider.enabled = true;
+        splashParticles.Play();
     }
 
     void Patrolling()
@@ -72,4 +81,3 @@ public class Enemy : MonoBehaviour
         patrolPoint = (patrolPoint + 1) % patrol.Length;
     }
 }
-
