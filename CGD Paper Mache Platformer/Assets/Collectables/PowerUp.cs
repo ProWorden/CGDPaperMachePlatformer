@@ -13,10 +13,15 @@ public class PowerUp : MonoBehaviour
     public float Timer = 15;
 
     Movement movement;
+    public ParticleSystem PS;
+    hideParticle playerPS;
+
 
 
     void Start()
     {
+        playerPS = GameObject.FindObjectOfType<hideParticle>();
+
         movement = GameObject.FindObjectOfType<Movement>();
 
         tempPos = transform.position;
@@ -31,7 +36,7 @@ public class PowerUp : MonoBehaviour
         transform.position = tempPos;
 
         //this makes the object rotate
-        this.transform.Rotate(50 * Time.deltaTime, 0, 50 * Time.deltaTime);
+       // this.transform.Rotate(50 * Time.deltaTime, 0, 50 * Time.deltaTime);
     }
 
 
@@ -40,6 +45,7 @@ public class PowerUp : MonoBehaviour
         if (other.transform.gameObject.tag == "Player")
         {
             StartCoroutine(power(other));
+            PS.enableEmission = false;
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider>().enabled = false;
         }
@@ -53,7 +59,7 @@ public class PowerUp : MonoBehaviour
         {
 
             movement.numJumps = 2;
-
+            playerPS.PS.enableEmission = true;
             //states.doubleJump = true;
             //PS.enableEmission = false;
             //states.doublePS.enableEmission = true;
@@ -67,10 +73,12 @@ public class PowerUp : MonoBehaviour
         {
 
             movement.numJumps = 1;
+            playerPS.PS.enableEmission = false;
+
+            PS.enableEmission = true;
 
             //states.doublePS.enableEmission = false;
             //states.doubleJump = false;
-            //PS.enableEmission = true;
         }
     }
 
