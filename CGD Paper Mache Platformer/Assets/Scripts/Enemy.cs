@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public Collider splashCollider;
     public ParticleSystem splashParticles;
     private NavMeshAgent nma;
- 
+    private float shootTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
         {
             splashCollider.enabled = false;
             splashParticles.Stop();
+            shootTimer = 0f;
         }
     }
 
@@ -66,8 +67,15 @@ public class Enemy : MonoBehaviour
 
     void Shoot()
     {
-        splashCollider.enabled = true;
-        splashParticles.Play();
+       
+       splashParticles.Play();
+       shootTimer += Time.deltaTime;
+        
+        if(shootTimer >= 0.3f)
+        {
+            splashCollider.enabled = true;
+        }
+
     }
 
     void Patrolling()
