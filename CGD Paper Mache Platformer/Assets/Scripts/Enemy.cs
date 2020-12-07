@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public bool isFireHydrant = false;
+    public float OnOffTime = 2f;
     public GameObject player;
     public float aggroRange = 20;
     public float shootingRange = 10;
@@ -16,6 +18,7 @@ public class Enemy : MonoBehaviour
     public ParticleSystem splashParticles;
     private NavMeshAgent nma;
     private float shootTimer = 0f;
+    private float PshootTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +29,15 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Aggro();
+        if(isFireHydrant)
+        {
+            PeriodicFire();
+        }
+        else
+        {
+            Aggro();
+        }
+       
     }
 
     void Aggro()
@@ -88,5 +99,30 @@ public class Enemy : MonoBehaviour
 
         nma.destination = patrol[patrolPoint].position;
         patrolPoint = (patrolPoint + 1) % patrol.Length;
+    }
+
+    void PeriodicFire()
+    {
+        PshootTimer += Time.deltaTime;
+
+        if (PshootTimer <= OnOffTime)
+        {
+            splashParticles.Play();
+
+            if (PshootTimer >= 0.3f)
+            {
+                splashCollider.enabled = true;
+            }
+        }
+        else if(PshootTimer >= OnOffTime)
+        {
+            splashParticles.Stop();
+            splashCollider.enabled = false;
+
+            if(PshootTimer >= 4f)
+            {
+                PshootTimer = 0f;
+            }
+        }
     }
 }
