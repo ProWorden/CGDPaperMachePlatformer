@@ -77,6 +77,7 @@ public class Enemy : MonoBehaviour
             nma.SetDestination(transform.position);
             return;
         }
+
         nma.destination = patrol[patrolPoint].position;
         patrolPoint = (patrolPoint + 1) % patrol.Length;
     }

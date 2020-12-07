@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
     int jumpCounter = 0;
     float DoubleJumpTimer = 0f;
     bool doubleJumped = false;
-
+    public bool killEnemy = false;
     //powerups
    // public bool doubleJump = false;
 
@@ -103,7 +103,7 @@ public class Movement : MonoBehaviour
     {
 
 
-        if (cc.isGrounded)
+        if (cc.isGrounded && !killEnemy)
         {
 
             grounded = true;
