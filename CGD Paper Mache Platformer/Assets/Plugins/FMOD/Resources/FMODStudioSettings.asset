@@ -357,8 +357,8 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../FMOD Studio/PaperMachePlatformer/PaperMachePlatformer.fspro
-  sourceBankPath: ..\..\FMOD Studio\PaperMachePlatformer\Build
+  sourceProjectPath: Assets/Music/PaperMachePlatformer.fspro
+  sourceBankPath: Assets\Music\Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
