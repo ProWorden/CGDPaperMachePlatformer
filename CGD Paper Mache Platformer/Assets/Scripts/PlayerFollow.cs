@@ -31,6 +31,7 @@ public class PlayerFollow : MonoBehaviour
     bool leftInput = false;
     bool rightInput = false;
     float timer;
+    public bool FixedCam = false;
 
     private void OnEnable()
     {
@@ -39,15 +40,19 @@ public class PlayerFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!leftInput && !rightInput && !autoRotate)
+        if(!FixedCam)
         {
-            heading += Input.GetAxis("Mouse X") * Time.deltaTime * rotationSpeed;
-            heading += Input.GetAxis("RightStickHorizontal") * Time.deltaTime * rotationSpeed;
-        }
+            if (!leftInput && !rightInput && !autoRotate)
+            {
+                heading += Input.GetAxis("Mouse X") * Time.deltaTime * rotationSpeed;
+                heading += Input.GetAxis("RightStickHorizontal") * Time.deltaTime * rotationSpeed;
+            }
 
-        tilt += Input.GetAxis("RightStickVertical") * Time.deltaTime * rotationSpeed;
-        tilt += Input.GetAxis("Mouse Y") * Time.deltaTime * rotationSpeed;
-        tilt = Mathf.Clamp(tilt, 0, 89);
+            tilt += Input.GetAxis("RightStickVertical") * Time.deltaTime * rotationSpeed;
+            tilt += Input.GetAxis("Mouse Y") * Time.deltaTime * rotationSpeed;
+            tilt = Mathf.Clamp(tilt, 0, 89);
+        }
+      
 
         transform.rotation = Quaternion.Euler(tilt, heading, 0);
 

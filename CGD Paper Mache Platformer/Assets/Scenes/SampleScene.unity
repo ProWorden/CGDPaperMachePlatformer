@@ -1245,6 +1245,7 @@ MonoBehaviour:
   camDistance: 7
   playerHalfHeight: 0.5
   playerScript: {fileID: 307073445}
+  FixedCam: 1
 --- !u!1 &1105052189
 GameObject:
   m_ObjectHideFlags: 0
